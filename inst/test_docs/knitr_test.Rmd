@@ -1,0 +1,32 @@
+---
+title: "knitr support test for recordr"
+author: "Gabriel Becker and Sara Moore"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Using recordr with knitr}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+
+I'm testing knitr_and_record. Can it find this fancy phrase?
+
+How about these plots? horsepower is an interesting thing to study
+
+```{r plot}
+library(ggplot2)
+
+p = qplot(hp, wt, data = mtcars)
+p
+```
+
+
+more text
+
+```{r lm}
+
+fit = lm(hp~wt, data = mtcars)
+fit
+```
+
+Seems like horsepower is related to weight!
