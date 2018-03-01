@@ -1,5 +1,5 @@
-7ba8b5423f7b614df3db9d92753b4aad *DESCRIPTION
-5e49bc01c499ad3fc96fac9e48f1c965 *NAMESPACE
+9225376dd1031883ed710234e9c2ba80 *DESCRIPTION
+4a3bddc10a00bd71748355286b2f8eaf *NAMESPACE
 0272b0fa201666cdde414ebf46d6f427 *R/Classes.R
 e7630f30dea885ff1e54cef5f1460ec5 *R/DocCollectionRef-methods.R
 55351c60d5e0d24d6d0924e337d8f0db *R/Generics.R
@@ -13,7 +13,7 @@ c20ec41396dbf4605016764adda7ec82 *R/backend-impls.R
 924e8aef676e6d45a7b1c55c22945eec *R/coercerender.R
 ef62806173064b5434eb76b8a25a9f46 *R/convenience_constructors.R
 28af55a25145bdd7ad586ad56e5174af *R/ggplotversions.R
-fea4c87e5e161d1cde0df17b886a1081 *R/knitr.R
+13804bd4112136f78da54a833a83d19c *R/knitr.R
 fc6c249bc07ddd586c780459c86aa788 *R/makeRStudioExtras.R
 ee8da20d63e45f030c1d50185ca43e79 *R/parseCode.R
 8bf825ebc6194c26ac9292b6bc2d331a *R/shiny.R
@@ -36,10 +36,10 @@ e484101726212a4d2d87fede6d1aad1e *inst/JSM2016/pricevcaratgroup.png
 cfe21d51e40f07b968403e1a25fa3654 *inst/JSM2016/unclesam.jpg
 4e02925c9b5988746e471c4f2ad407e8 *inst/doc/Extending-trackr.R
 136d0ee24799ffc498a728ac114a06ae *inst/doc/Extending-trackr.Rnw
-5fd1adb10a1fef0b3c8bccac5fcddc05 *inst/doc/Extending-trackr.pdf
+af1a4e8275ad11b8fcae6827cc7baebe *inst/doc/Extending-trackr.pdf
 fc52f56973b03826eb3406c69a78b011 *inst/doc/index.R
 f2553a254ad623ae4274a0506b4da3c8 *inst/doc/index.Rmd
-75bd9e78dbf7f937bd9590031b9be8bc *inst/doc/index.html
+ab2ecb7f6554a29ab452baadef2370d0 *inst/doc/index.html
 4f8a7fb3b684a6b6e6cecca21c3c6977 *inst/images/Rlogo.png
 914b679b7b2ff36a5d6c6094e53cb405 *inst/shinyweb/css/style.css
 6eb718155eba55d6a9fc021ab3672b6c *inst/shinyweb/js/index.js
@@ -68,6 +68,7 @@ c1d0fec376d8568974cdd3476697dc43 *man/TrackrDB-class.Rd
 04992d54c5a8076cf962183b22e9f95b *man/TrackrOptions-class.Rd
 8ab5596ed1e9f147a66d846405a6b32b *man/annotationText-methods.Rd
 3496974666bace10a4021fdc706e7197 *man/as-methods.Rd
+d64e4c1a729c1870b430efcb0e73ae40 *man/checkPandoc.Rd
 2cec2ead9b9985bf7781d2231ca1ab2b *man/codeInfo-methods.Rd
 5780c6de55cd1f72c5ef95025e293690 *man/conv_constr.Rd
 7a9118c961e0e1186ec43d8ed08460b2 *man/coordSystem-methods.Rd
@@ -86,7 +87,7 @@ f959f3c4e4ece1cfce84bc44b3143405 *man/graphSys-methods.Rd
 5f9e05eab1fa1ef4e4196d54deabf8e7 *man/hasLegend-methods.Rd
 4f6d4ce0aa4739ff1af9b0a2f91bd0b6 *man/img_opts.Rd
 72c6ec4b91f6d0aa68a91b6bd420c17c *man/interface-api.Rd
-4321a29526fc30b10d4bf10569f68904 *man/knit_and_record.Rd
+d1c950e42b66fefc901890ba810a19be *man/knit_and_record.Rd
 5c3c0c6fec2f65aacb33deeea255fd34 *man/main-api.Rd
 4d9645e3c761cb6192a0d7de6e080e07 *man/makeFeatureSet.Rd
 2c0496ff9e45eb39e9983728d309a7ed *man/nLayers-methods.Rd
@@ -109,6 +110,6 @@ b069ba5537e0eb8a19cfb21fd7cc00b1 *man/trackr_knit_env.Rd
 4418a520d08a53a18f3006172b9d9e83 *man/trackropts.Rd
 8a06df0f05a49e168001967646c5b8bf *man/uniqueID-methods.Rd
 3c0cf45b75e8675534d5284779d6b76b *man/user-methods.Rd
-bfedd94e68ffa73d6f16dc2701c8f152 *tests/trackr-tests.R
+0970a7bc93886ac0eab1ce4edb0f12f5 *tests/trackr-tests.R
 136d0ee24799ffc498a728ac114a06ae *vignettes/Extending-trackr.Rnw
 f2553a254ad623ae4274a0506b4da3c8 *vignettes/index.Rmd

@@ -1,3 +1,10 @@
+##' @title check for availability of pandoc
+##'
+##' @description This function is exported because it is used as a default value
+##' end users should not need to call it directly
+##' @export
+checkPandoc = function() nzchar(Sys.which("pandoc")["pandoc"])
+
 recplothook = function(x, opts, ...) {
     if(is.null(defaultTDB())) {
         warning("cannot record plot, default db not set. Use defaultTDB() in the first chunk to do this")
@@ -31,6 +38,8 @@ recplothook = function(x, opts, ...) {
 }
 
 
+##' @importFrom knitr knit2html
+
 
 ##' @title Knit and record an Rmd, Rnw, etc file
 ##'
@@ -43,7 +52,7 @@ recplothook = function(x, opts, ...) {
 ##'
 ##' @param input The input argument exactly as knitr's \code{knit} function
 ##' accepts it
-##' @param ... Passed directly to \code{knit}
+##' @param ... Passed directly to \code{render}
 ##' @param verbose passed to (multiple) \code{record} calls for report and its
 ##' outputs
 ##' @param tmptdb A TrackrDB in which to temporarily record results which are printed within the dynamic document. Generally this should not need to be changed, as it is only used to collect the records so they can be associated with the result for the whole document (in the defaultTDB).
@@ -54,6 +63,8 @@ recplothook = function(x, opts, ...) {
 ##' @export
 knit_and_record = function(input, ..., verbose = FALSE,
                            tmptdb = TrackrDB(backend= ListBackend(), img_dir = img_dir(defaultTDB()))) {
+    if(!checkPandoc()) 
+        message("Pandoc not detected. knit_and_record falling back to knit2html. Some modern features of Rmd file rendering may not work.")
     oldtdb = defaultTDB()
     on.exit(defaultTDB(oldtdb))
     defaultTDB(tmptdb)
@@ -73,13 +84,19 @@ knit_and_record = function(input, ..., verbose = FALSE,
         odir = dirname(input) #getwd()
 
     starttime = Sys.time()
-    if(grepl("[Rr][Mm][Dd]$", input))
+    if(checkPandoc() && grepl("[Rr][Mm][Dd]$", input)) {
         resfile = render(input = input,output_format = html_document(self_contained = FALSE, mathjax = NULL),
                          run_pandoc = TRUE, ...)
-    else if (grepl("[Rr][Nn][Ww]$", input)) {
+        
+    } else if (checkPandoc() && grepl("[Rr][Nn][Ww]$", input)) {
         resfile = render(input = input,  output_format = "pdf_document",
                          run_pandoc=TRUE, ...)
+    } else if (grepl("[Rr][Mm][Dd]$", input)) {
+        resfile = knit2html(input = input, ...)
+    } else {
+        stop("Unable to determine how to process file ", input)
     }
+  
     endtime = Sys.time()
     filenamestub = gsub("(.*)\\.R..$", "\\1", basename(input))
     figpath = file.path(odir, paste0(filenamestub, "_files"))

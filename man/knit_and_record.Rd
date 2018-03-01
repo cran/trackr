@@ -11,7 +11,7 @@ knit_and_record(input, ..., verbose = FALSE, tmptdb = TrackrDB(backend =
 \item{input}{The input argument exactly as knitr's \code{knit} function
 accepts it}
 
-\item{...}{Passed directly to \code{knit}}
+\item{...}{Passed directly to \code{render}}
 
 \item{verbose}{passed to (multiple) \code{record} calls for report and its
 outputs}
