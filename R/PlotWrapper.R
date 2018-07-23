@@ -44,7 +44,7 @@ gen_hash_id <- function(x) {
     # this is not ideal, but does the trick.
     # regDateTime(x) <- as.POSIXct("1970-01-01 00:00:01", tz = "UTC")
     ##    digest::digest(x, "xxhash32", seed = 0)
-    paste0("SpkyV2_", fastdigest(x))
+    paste0("SpkyV2:", fastdigest(x))
 }
 
 ## Implementation of show method for PlotFeatureSet class
@@ -663,9 +663,16 @@ setMethod(f = "dataLabels",
         # return everything that's set, except the title
         # x, y, 
         # alpha, colour/color, fill, shape/linetype, size, facet
-        data.labs <- unlist(object$labels[setdiff(names(object$labels), "title")])
-        empty.labs <- which(data.labs=="NA")
-        if (length(empty.labs)>0) {
+    data.labs <- unlist(object$labels[setdiff(names(object$labels),
+                                              c("title", "subtitle"))])
+    ##work around for bug in ggplot
+    ## XXX this may break for a weird corner case where data lives in
+    ## multiple places and they are using the 'weight' column from a secondary
+    ## dataset as an actual grouping variable somehow.
+    if("weight" %in% data.labs && !"weight" %in% names(object$data))
+        data.labs = data.labs[-which(data.labs == "weight")]
+    empty.labs <- which(data.labs=="NA")
+    if (length(empty.labs)>0) {
             data.labs <- data.labs[-empty.labs]
         }
         data.labs <- prep.labels(as.list(data.labs))
@@ -689,13 +696,13 @@ setMethod(f = "dataLabels",
             }
             data.labs.scales <- prep.labels(as.list(data.labs.scales))
         }
-
-        data.labs <- append.labels(data.labs, data.labs.scales)
-        if (!is.null(groupInfo(object)$panel$vars)) {
-            data.labs$group$panel <- union(data.labs$group$panel, groupInfo(object)$panel$vars)
-        }
-
-        append.labels(data.labs, dataNames(object))
+    
+    data.labs <- append.labels(data.labs, data.labs.scales)
+    if (!is.null(groupInfo(object)$panel$vars)) {
+        data.labs$group$panel <- union(data.labs$group$panel, groupInfo(object)$panel$vars)
+    }
+    
+    append.labels(data.labs, dataNames(object))
     }
 )
 
@@ -982,26 +989,17 @@ setMethod(f = "dataNames",
 setMethod(f = "dataNames",
     signature = "ggplot",
     definition = function(object) {
-        data.names <- NULL
-        if (length(object$mapping) > 0) {
-            data.names <- as.character(object$mapping)
-        } else { ## sometimes mappings are in layers
-            mps = lapply(object$layers, function(x) x$mapping)
-            mps = mps[sapply(mps, function(x) length(x) > 0)]
-            if(length(mps) ==0)
-                warning("No mappings found")
-            else
-                data.names <- as.character(mps[[1]])
-
-        }
+        data.names <- .ggplotMappingVars(object)
+        
         data.names <- as.list(data.names)
 
-        # wrap
-        data.names$panel <- names(object$facet$facets)
-        if (is.null(data.names$panel)) {
-            # grid
-            data.names$panel <- c(names(object$facet$rows), names(object$facet$cols))
-        }
+        data.names$panel <- .ggplotFacetVars(object)
+        ## # wrap
+        ## data.names$panel <- names(object$facet$facets)
+        ## if (is.null(data.names$panel)) {
+        ##     # grid
+        ##     data.names$panel <- c(names(object$facet$rows), names(object$facet$cols))
+        ## }
 
         # c(data.names, panel = paste(panel.names, collapse=", "))
         prep.labels(data.names)

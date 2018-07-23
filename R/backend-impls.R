@@ -10,16 +10,28 @@ setMethod("prep_for_backend", c("FeatureSet", "TrackrDB"),
 
 
 
-
+##' Make image files for a featureset
+##' @param object A FeatureSet object
+##' @param opts Options
+##' @return A named list with two entries: preview.path, and
+##'     image.path. These should be paths to (now) existing iamge
+##'     fiels for thumbnail and main display, respectively
+##' @docType methods
+##' @export
+##' @rdname make_image_files
 setGeneric("make_image_files", function(object, opts) standardGeneric("make_image_files"))
+##' @export
+##' @rdname make_image_files
+##' @aliases make_image_files,PlotFeatureSet-method
 setMethod("make_image_files", "PlotFeatureSet",
           function(object, opts) {
     
 
     img.save.dir = img_dir(opts)
     img.ext = img_ext(opts)
-
-    id = uniqueID(object)
+   
+    ## make sure the paths don't have a bunch of :s in them
+    id =  gsub(":", "_", uniqueID(object))
     
     if(!dir.exists(img.save.dir))
         dir.create(img.save.dir, recursive=TRUE)
@@ -41,6 +53,10 @@ setMethod("make_image_files", "PlotFeatureSet",
     list(preview.path = basename(thumbpath), image.path = basename(mainpath))
 })
 
+##' @export
+##' @rdname make_image_files
+##' @aliases make_image_files,RmdFeatureSet-method
+
 setMethod("make_image_files", "RmdFeatureSet",
           function(object, opts) {
     img.save.dir = img_dir(opts)
@@ -50,30 +66,25 @@ setMethod("make_image_files", "RmdFeatureSet",
     if(!dir.exists(img.save.dir))
         dir.create(img.save.dir, recursive=TRUE)
     ret = NULL
-    if(requireNamespace("RSelenium")) {
-        
-    ## if(!require("RSelenium"))
-    ##     ret = callNextMethod() ## this will hit FeatureSet, ie the default.
-    ## else {
-        ## can't figure out how to get phantomjs screenshot to respect window size...
-        ret = tryCatch({suppressMessages(rs <- RSelenium::rsDriver(browser = "chrome", geckover=NULL, check=FALSE)) ##"phantomjs"))
-            on.exit(rs$server$stop(), add = TRUE)
+    ## if(requireNamespace("RSelenium")) {
+    ##     ret = tryCatch({suppressMessages(rs <- RSelenium::rsDriver(browser = "chrome", geckover=NULL, check=FALSE)) ##"phantomjs"))
+    ##         on.exit(rs$server$stop(), add = TRUE)
             
-            cl = rs[["client"]]
-            cl$setWindowSize(480L, 640L)         
-            cl$navigate(paste0("file://", normalizePath(object@outfile)))
+    ##         cl = rs[["client"]]
+    ##         cl$setWindowSize(480L, 640L)         
+    ##         cl$navigate(paste0("file://", normalizePath(object@outfile)))
             
-            fil = file.path(img.save.dir, paste0(uniqueID(object), c("_thumb.",".", "_feed."), img.ext))
-            cl$screenshot(file = fil[1])
-            ## RSelenium doesn't appeart to allow you to control the size of screenshots, so we
-            ## will have to hope that blacklight can shrink the full size image itself.
-            cl$close()
-            file.copy(fil[1], fil[2], overwrite = TRUE)
-            file.copy(fil[1], fil[3], overwrite = TRUE)
+    ##         fil = file.path(img.save.dir, paste0(uniqueID(object), c("_thumb.",".", "_feed."), img.ext))
+    ##         cl$screenshot(file = fil[1])
+    ##         ## RSelenium doesn't appeart to allow you to control the size of screenshots, so we
+    ##         ## will have to hope that blacklight can shrink the full size image itself.
+    ##         cl$close()
+    ##         file.copy(fil[1], fil[2], overwrite = TRUE)
+    ##         file.copy(fil[1], fil[3], overwrite = TRUE)
             
-            list(preview.path = basename(fil[1]), image.path = basename(fil[2]))},
-            error = function(e) NULL)
-    }
+    ##         list(preview.path = basename(fil[1]), image.path = basename(fil[2]))},
+    ##         error = function(e) NULL)
+    ## }
     if(is.null(ret))
         ##this will hit featurset, ie the default and always work
         ret = callNextMethod() 
@@ -87,12 +98,16 @@ draw_text_icon = function(object, kl = object@klass) {
     plot.window(xlim = c(0,1), ylim = c(0,1))
     old = par(mar = c(0.1, 0.1, 0.1, 0.1))
     on.exit(par(old))
+    
     text(abrevClass(kl), x = .45, y = .45, cex = 11,
-         family = "Helvetica", pos = 3, adj = c(.5, .5), offset = 0)
+         family = "sans", pos = 3, adj = c(.5, .5), offset = 0)
     text(kl[1], x = .45, y = .05, cex = 1.5,
-         family = "Helvetica", pos = 3, adj = c(.5, .5), offset = 0)
+         family = "sans", pos = 3, adj = c(.5, .5), offset = 0)
 }
 
+##' @export
+##' @rdname make_image_files
+##' @aliases make_image_files,ObjFeatureSet-method
 setMethod("make_image_files", "ObjFeatureSet",
           function(object, opts) {
     img.save.dir = img_dir(opts)
@@ -101,8 +116,8 @@ setMethod("make_image_files", "ObjFeatureSet",
     
     if(!dir.exists(img.save.dir))
         dir.create(img.save.dir, recursive=TRUE)
-    
-    paths = file.path(img.save.dir, paste0(uniqueID(object), c("_thumb.", ".","_feed."), img.ext))
+    id = gsub(":", "_", uniqueID(object))
+    paths = file.path(img.save.dir, paste0(id, c("_thumb.", ".","_feed."), img.ext))
     png(paths[1], width = 250, height = 250, units = "px")
     draw_text_icon(object = object)
     dev.off()
@@ -112,7 +127,9 @@ setMethod("make_image_files", "ObjFeatureSet",
     list(preview.path = basename(paths[1]), image.path = basename(paths[2]))
 })
 
-
+##' @export
+##' @rdname make_image_files
+##' @aliases make_image_files,FeatureSet-method
 setMethod("make_image_files", "FeatureSet",
           function(object, opts) {
     img.save.dir = img_dir(opts)
@@ -121,15 +138,18 @@ setMethod("make_image_files", "FeatureSet",
     
     if(!dir.exists(img.save.dir))
         dir.create(img.save.dir, recursive=TRUE)
-    
-    paths = file.path(img.save.dir, paste0(uniqueID(object), c("_thumb.", ".","_feed."), img.ext))
+    id = gsub(":", "_", uniqueID(object))
+    paths = file.path(img.save.dir, paste0(id, c("_thumb.", ".","_feed."), img.ext))
 
-    file.copy(system.file("images/Rlogo.png", package = "trackr"), paths[1])
-    file.copy(system.file("images/Rlogo.png", package = "trackr"), paths[2])
-    file.copy(system.file("images/Rlogo.png", package = "trackr"), paths[3])
+    file.copy(system.file("images", "Rlogo.png", package = "trackr"), paths[1])
+    file.copy(system.file("images", "Rlogo.png", package = "trackr"), paths[2])
+    file.copy(system.file("images", "Rlogo.png", package = "trackr"), paths[3])
     list(preview.path = basename(paths[1]), image.path = basename(paths[2]))
 })
 
+##' @export
+##' @rdname make_image_files
+##' @aliases make_image_files,ANY-method
 setMethod("make_image_files", "ANY",
           function(object, opts) stop("make_image_files called on a non FeatureSet object. This shouldn't happen, please contact the package maintainer."))
     
@@ -160,6 +180,26 @@ setMethod("prep_for_backend", c("FeatureSet", "ANY"),
     
     doc
 })
+
+savefile = function(object, opts) {
+
+    dir = img_dir(opts)
+    file.path(dir, paste0(idPath(uniqueID(object)), ".rds"))
+}
+
+
+setMethod("prep_for_backend", c("ObjFeatureSet", "ANY"),
+          function(object, target, opts = trackr_options(target), verbose = FALSE) {
+    doc = callNextMethod() ## FeatureSet
+
+    if(!is.null(object@object) && !file.exists(savefile(object, opts))) {
+        saveRDS(object@object, file = savefile(object, opts))
+    }
+    doc
+    
+
+})
+          
 
 
 ## Funnel to the character (id) method

@@ -10,7 +10,7 @@
 \alias{titles,trellis-method}
 \alias{titles,gTree-method}
 \alias{titles<-,PlotFeatureSet-method}
-\alias{titles,PlotFeatureSet-method}
+\alias{titles,FeatureSet-method}
 \title{Accessors for the title(s) of FeatureSet objects}
 \usage{
 titles(object) <- value
@@ -27,7 +27,7 @@ titles(object)
 
 \S4method{titles}{PlotFeatureSet}(object) <- value
 
-\S4method{titles}{PlotFeatureSet}(object)
+\S4method{titles}{FeatureSet}(object)
 }
 \arguments{
 \item{object}{An object of (super)class PlotFeatureSet. For accession, also plot objects of class ggplot or trellis.}
@@ -42,7 +42,8 @@ Get or set the titles associated with a FeatureSet object. This should not be ca
 }
 \examples{
 library(ggplot2)
-plt = qplot(mtcars$mpg, mtcars$cyl)
+mt = datasets::mtcars
+plt = qplot(mt$mpg, mt$cyl)
 fs = makeFeatureSet(plt)
 titles(fs)
 }

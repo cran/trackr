@@ -4,7 +4,7 @@
 
 <head>
 
-<meta charset="utf-8">
+<meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 
@@ -21,8 +21,8 @@
 <script src="knitr_test_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="knitr_test_files/bootstrap-3.3.5/shim/respond.min.js"></script>
 <script src="knitr_test_files/navigation-1.1/tabsets.js"></script>
-<link href="knitr_test_files/highlightjs-1.1/default.css" rel="stylesheet" />
-<script src="knitr_test_files/highlightjs-1.1/highlight.js"></script>
+<link href="knitr_test_files/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="knitr_test_files/highlightjs-9.12.0/highlight.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -31,10 +31,12 @@
   }
 </style>
 <script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
 }
 </script>
 
@@ -122,24 +124,14 @@ $(document).ready(function () {
 </div>
 
 
-<p>I’m testing knitr_and_record. Can it find this fancy phrase?</p>
+<p>I’m testing knitr_and_record. Can it find this Fancy Phrase?</p>
 <p>How about these plots? horsepower is an interesting thing to study</p>
 <pre class="r"><code>library(ggplot2)
 
-p = qplot(hp, wt, data = mtcars)
+p = qplot(mtcars$wt, mtcars$hp)
 p</code></pre>
 <p><img src="knitr_test_files/figure-html/plot-1.png" width="672" /></p>
-<pre><code>## Formal class &#39;TrackrDB&#39; [package &quot;trackr&quot;] with 2 slots
-##   ..@ opts   :Formal class &#39;TrackrOptions&#39; [package &quot;trackr&quot;] with 4 slots
-##   .. .. ..@ insert_delay: num 0
-##   .. .. ..@ img_dir     : chr &quot;/private/var/folders/79/l_n_5qr152d2d9d9xs0591lh0000gn/T/Rtmp27c7ap/images&quot;
-##   .. .. ..@ img_ext     : chr &quot;png&quot;
-##   .. .. ..@ backend_opts: list()
-##   ..@ backend:Reference class &#39;ListBackend&#39; [package &quot;trackr&quot;] with 1 field
-##   .. ..$ docs:Formal class &#39;DocList&#39; [package &quot;rdocdb&quot;] with 1 slot
-##   .. .. .. ..@ .Data: list()
-##   .. ..and 14 methods.</code></pre>
-<p>more text</p>
+<p>more text here again</p>
 <pre class="r"><code>fit = lm(hp~wt, data = mtcars)
 fit</code></pre>
 <pre><code>## 

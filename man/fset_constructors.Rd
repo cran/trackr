@@ -17,7 +17,8 @@ ObjFeatureSet(object, code = as.character(parseCode(object)),
   regdate = Sys.time(), analysispkg = scrape_descr(),
   analysisfile = .analysisFileOrNA(), rstudioproject = .rstudioProjOrNA(),
   fsetklass = "ObjFeatureSet", isplot = FALSE, generatedin = character(),
-  clineargs = commandArgs(), resultURI = character(), ...)
+  clineargs = commandArgs(), resultURI = character(),
+  provtable = ProvStoreDF(), ...)
 
 PlotFeatureSet(object, fsetklass = "PlotFeatureSet",
   package = NA_character_, ...)
@@ -36,7 +37,7 @@ DFFeatureSet(object, fsetklass = "DFFeatureSet", vars = names(object),
 RmdFeatureSet(rmdfile, outputfile, uniqueid,
   rmdfileid = gen_hash_id(readLines(rmdfile)), chunks,
   numouts = length(trackr_backend(objtdb)),
-  numplots = sum(sapply(objrecords, function(x) x$isplot)), title = "",
+  numplots = sum(sapply(objrecords, function(x) x$isplot)), titles = "",
   author = "", textkeywords = character(), codekeywords = character(),
   outputids = sapply(objrecords, function(x) x$uniqueid, USE.NAMES = FALSE),
   tags = character(), user = unname(Sys.info()["user"]),
@@ -88,6 +89,9 @@ in which the object was recorded. Do not manually set.}
 location within a hierarchical grouping for results tracked by
 trackr. E.g. \code{'/groups/Becker/HousingData/analysis3'}}
 
+\item{provtable}{A ProvStoreDF object containing "value lineage"
+provenance information}
+
 \item{...}{For ObjFeatureSet and RmdFeatureSet, unused. For Other
 constructors, passed to the parent constructor.}
 
@@ -114,7 +118,7 @@ manually set. EVER.}
 
 \item{numplots}{Do not manually set}
 
-\item{title}{Do not manually set}
+\item{titles}{Do not manually set}
 
 \item{author}{Do not manually set}
 

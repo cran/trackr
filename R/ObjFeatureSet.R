@@ -96,6 +96,8 @@ getTopS3Class = function(x) head(class(x), 1)
 #' @param resultURI An optional character value which defines a
 #'     location within a hierarchical grouping for results tracked by
 #'     trackr. E.g. \code{'/groups/Becker/HousingData/analysis3'}
+#' @param provtable A ProvStoreDF object containing "value lineage"
+#'     provenance information
 #' @param ... For ObjFeatureSet and RmdFeatureSet, unused. For Other
 #'     constructors, passed to the parent constructor.
 #' @return An object of a class that inherits from FeatureSet
@@ -121,6 +123,7 @@ ObjFeatureSet = function(  object,
                          generatedin = character(),
                          clineargs = commandArgs(),
                          resultURI = character(),
+                         provtable = ProvStoreDF(),
                          ...) {
     
     tags <- unique(c(tags, tags(object), generateTags(object)))
@@ -140,7 +143,8 @@ ObjFeatureSet = function(  object,
         isplot = isplot,
         generatedin = generatedin,
         sessioninfo = sessionInfo(),
-        resultURI = resultURI)
+        resultURI = resultURI,
+        provtable = provtable)
 }
 
 #' @rdname fset_constructors
@@ -273,13 +277,25 @@ trackr_knit_env = new.env()
 
 globalVariables("tangletxt")
 
+
+.cleanHeader = function(headermat) {
+    headermat$title = NULL
+    headermat$author = NULL
+    headermat$resultURI = NULL
+    headermat$recvars = NULL
+    ## we just don't care about these ones
+    headermat$output = NULL
+    headermat$vignette = NULL
+    headermat
+}
+
 #' @rdname fset_constructors
 #' @param rmdfile The (input) RMD file
 #' @param outputfile the path to the woven report
 #' @param chunks The code and text chunks of the dynamic document
 #' @param numouts Do not manually set
 #' @param numplots Do not manually set
-#' @param title Do not manually set
+#' @param titles Do not manually set
 #' @param author Do not manually set
 #' @param textkeywords Keywords extracted from the text
 #' @param codekeywords Keywords extracted from the code
@@ -298,7 +314,7 @@ RmdFeatureSet = function(rmdfile,
                          chunks,
                          numouts = length(trackr_backend(objtdb)),
                          numplots = sum(sapply(objrecords, function(x) x$isplot)),
-                         title = "", 
+                         titles = "", 
                          author = "",
                          textkeywords = character(), ## XXX TODO
                          codekeywords = character(), ## XXX TODO
@@ -325,16 +341,31 @@ RmdFeatureSet = function(rmdfile,
     }else {
         headermat = list()
     }
-    if(nchar(title) == 0 && !is.null(headermat$title)) {
-        title = headermat$title
+    if(nchar(titles) == 0 && !is.null(headermat$title)) {
+        titles = headermat$title
+
     }
     if(nchar(author) == 0 && !is.null(headermat$author)) {
         author = headermat$author
+
     }
 
     if(nchar(resultURI) == 0 && !is.null(headermat$resultURI)) {
         resultURI = headermat$resultURI
+
     }
+    ## we already used these don't want them showing up twice
+    headermat = .cleanHeader(headermat)
+    
+    ## headermat$title = NULL
+    ## headermat$author = NULL
+    ## headermat$resultURI = NULL
+    ## headermat$record = NULL
+    ## ## we just don't care about these ones
+    ## headermat$output = NULL
+    ## headermat$vignette = NULL
+    
+    
     
     con = textConnection("tangletxt", "w", local=TRUE)
     on.exit(close(con), add=TRUE)
@@ -355,7 +386,7 @@ RmdFeatureSet = function(rmdfile,
         uniqueid = uniqueid, ##gen_hash_id(readLines(rmdfile)),
         rmdfileid = rmdfileid,
         chunks = chunks, numouts = numouts, numplots = numplots,
-        title = title, author = author, textkeywords = textkeywords,
+        titles = titles, author = author, textkeywords = textkeywords,
         codekeywords = codekeywords,
         inputfiles = scrinfo@files,
         outputids= outputids,
@@ -373,10 +404,55 @@ RmdFeatureSet = function(rmdfile,
         sessioninfo = sessionInfo(),
         figurefiles = figurefiles,
         isplot = FALSE,
-        resultURI = resultURI)
+        resultURI = resultURI,
+        extramdata = headermat)
 }
                          
-        
+
+RawFilesFeatureSet = function( object,
+                             origfiles = object,
+                         code = character(),
+                         codeinfo = CodeDepends::getInputs(parseCode(code)),
+                         uniqueid = fileHash(object),
+                         ## XXX IDifficult to ensure tags(object) and
+                         ## generateTags(object) always included without
+                         ## overriding/duplicating when I Call this to
+                         ## resucitate a  feature set out of a db record
+                         ## Hopefully the unique call below does it.
+                         tags = character(),
+                         user = unname(Sys.info()["user"]),
+                         regdate = Sys.time(),
+                         analysispkg = scrape_descr(),
+                         analysisfile = .analysisFileOrNA(),
+                         rstudioproject = .rstudioProjOrNA(),
+                         fsetklass = "RawFileFeatureSet" ,
+                         isplot= FALSE,
+                         generatedin = character(),
+                         clineargs = commandArgs(),
+                         resultURI = character(),
+                         provtable = ProvStoreDF(),
+                         ...) {
+    
+    tags <- unique(c(tags, tags(object), generateTags(object)))
+    new("RawFilesFeatureSet",
+        path = object,
+        origfiles = origfiles,
+        code = code,
+        codeinfo = codeinfo,
+        uniqueid = uniqueid,
+        tags = tags,
+        user = user,
+        regdate = regdate,
+        analysispkg = analysispkg,
+        analysisfile = analysisfile,
+        rstudioproject = rstudioproject,
+        fsetklass = fsetklass,
+        isplot = isplot,
+        generatedin = generatedin,
+        sessioninfo = sessionInfo(),
+        resultURI = resultURI,
+        provtable = provtable)
+}
 
 
 
@@ -905,6 +981,20 @@ flatten5 <- function(x) {
     x$data <- NULL
     if(is(x$sessioninfo, "sessionInfo"))
         x$sessioninfo = sinfotolist(x$sessioninfo)
+    
+    if(is(x$provtable, "ProvStoreDF") &&
+       nrow(provdata(x$provtable)) > 0) {
+        prv = x$provtable
+        df = provdata(prv)
+        df$outputvarhash = paste0(hashprefix(prv), ":", df$outputvarhash)
+        inds = nzchar(df$inputvarhash)
+        df$inputvarhash[inds] = paste0(hashprefix(prv), ":", df$inputvarhash[inds])
+        x$provtable = toJSON(df)
+    } else {
+        warning("got a provtable field I don't understand. NULLing it.")
+        x$provtable = NULL
+    }
+        
 
     ## flatten the extramdata catchall slot
     if(!is.null(x$extramdata)) {
