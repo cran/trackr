@@ -1,4 +1,4 @@
-1c92acec04cb628aa0b39b1210d0a421 *DESCRIPTION
+2f395b04747896e644c701c15c13526a *DESCRIPTION
 334aca1eaab268c0cfbb97e807624f71 *NAMESPACE
 78bdc1352b7af53be045f49bf10958d5 *R/Classes.R
 e7630f30dea885ff1e54cef5f1460ec5 *R/DocCollectionRef-methods.R
@@ -19,7 +19,7 @@ ee8da20d63e45f030c1d50185ca43e79 *R/parseCode.R
 ff20362c26960b22df91553df26e24b3 *R/recordFile.R
 8bf825ebc6194c26ac9292b6bc2d331a *R/shiny.R
 4273102726fe33b3d06a1fd616a3ed54 *R/showMethods.R
-24dd08763049fc258b7eba14fb301089 *build/vignette.rds
+e7165092f2b5f4e13b4b846a4c1e8bd1 *build/vignette.rds
 78b18c96c8bc6e910f07308004a5ee7e *inst/JSM2016/JSM2016.css
 711f3c22dfaa2507129ac759dc70a15f *inst/JSM2016/JSM2016.html
 ac56fded3e43395bed45226d22dd71cf *inst/JSM2016/JSM2016.org
@@ -37,10 +37,10 @@ e484101726212a4d2d87fede6d1aad1e *inst/JSM2016/pricevcaratgroup.png
 cfe21d51e40f07b968403e1a25fa3654 *inst/JSM2016/unclesam.jpg
 4e02925c9b5988746e471c4f2ad407e8 *inst/doc/Extending-trackr.R
 136d0ee24799ffc498a728ac114a06ae *inst/doc/Extending-trackr.Rnw
-bfc0aae68fb8c7e34983cddc57ad7513 *inst/doc/Extending-trackr.pdf
+63e5408de9de1cbe0e7bc58e1e0426f4 *inst/doc/Extending-trackr.pdf
 fc52f56973b03826eb3406c69a78b011 *inst/doc/index.R
 67efaa2ba3bb0f2b3d40e1d4a53cc7ba *inst/doc/index.Rmd
-8514c72889cfe8e6ebac9b1a8e255799 *inst/doc/index.html
+8323c134ce2743874c2894babbc2a901 *inst/doc/index.html
 4f8a7fb3b684a6b6e6cecca21c3c6977 *inst/images/Rlogo.png
 914b679b7b2ff36a5d6c6094e53cb405 *inst/shinyweb/css/style.css
 6eb718155eba55d6a9fc021ab3672b6c *inst/shinyweb/js/index.js
@@ -97,6 +97,6 @@ b069ba5537e0eb8a19cfb21fd7cc00b1 *man/trackr_knit_env.Rd
 8a06df0f05a49e168001967646c5b8bf *man/uniqueID-methods.Rd
 de41596b77e9d98468f64ec2f45d1e12 *man/user-methods.Rd
 4b98eceb0c01da995597f31d9a30a138 *tests/ggplot_extraction.R
-2d7eb4d304559f13e862f29046e51870 *tests/trackr-tests.R
+9edd0631ac5dac83e2822d36bc854ba0 *tests/trackr-tests.R
 136d0ee24799ffc498a728ac114a06ae *vignettes/Extending-trackr.Rnw
 67efaa2ba3bb0f2b3d40e1d4a53cc7ba *vignettes/index.Rmd

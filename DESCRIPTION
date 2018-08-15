@@ -2,7 +2,7 @@ Package: trackr
 Type: Package
 Title: Semantic Annotation and Discoverability System for R-Based
         Artifacts
-Version: 0.9.4
+Version: 0.9.5
 Date: 2018-07-17
 Authors@R: c(
     person("Gabriel", "Becker", role = c("aut", "cre"),
@@ -32,8 +32,8 @@ Collate: 'Classes.R' 'DocCollectionRef-methods.R' 'Generics.R'
         'parseCode.R' 'recordFile.R' 'shiny.R' 'showMethods.R'
 RoxygenNote: 6.0.1
 NeedsCompilation: no
-Packaged: 2018-07-19 16:27:32 UTC; beckerg4
+Packaged: 2018-08-15 15:20:42 UTC; beckerg4
 Author: Gabriel Becker [aut, cre],
   Sara Moore [aut]
 Repository: CRAN
-Date/Publication: 2018-07-23 20:50:03 UTC
+Date/Publication: 2018-08-15 18:00:03 UTC
