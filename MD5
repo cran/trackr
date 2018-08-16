@@ -1,4 +1,4 @@
-2f395b04747896e644c701c15c13526a *DESCRIPTION
+084020cc570a3f7432f78cc994c75337 *DESCRIPTION
 334aca1eaab268c0cfbb97e807624f71 *NAMESPACE
 78bdc1352b7af53be045f49bf10958d5 *R/Classes.R
 e7630f30dea885ff1e54cef5f1460ec5 *R/DocCollectionRef-methods.R
@@ -37,10 +37,10 @@ e484101726212a4d2d87fede6d1aad1e *inst/JSM2016/pricevcaratgroup.png
 cfe21d51e40f07b968403e1a25fa3654 *inst/JSM2016/unclesam.jpg
 4e02925c9b5988746e471c4f2ad407e8 *inst/doc/Extending-trackr.R
 136d0ee24799ffc498a728ac114a06ae *inst/doc/Extending-trackr.Rnw
-63e5408de9de1cbe0e7bc58e1e0426f4 *inst/doc/Extending-trackr.pdf
+0090c3693e633ffab1f499de02971977 *inst/doc/Extending-trackr.pdf
 fc52f56973b03826eb3406c69a78b011 *inst/doc/index.R
 67efaa2ba3bb0f2b3d40e1d4a53cc7ba *inst/doc/index.Rmd
-8323c134ce2743874c2894babbc2a901 *inst/doc/index.html
+bad06ac56e8d3f7eb05469a3ef020ab1 *inst/doc/index.html
 4f8a7fb3b684a6b6e6cecca21c3c6977 *inst/images/Rlogo.png
 914b679b7b2ff36a5d6c6094e53cb405 *inst/shinyweb/css/style.css
 6eb718155eba55d6a9fc021ab3672b6c *inst/shinyweb/js/index.js
@@ -97,6 +97,6 @@ b069ba5537e0eb8a19cfb21fd7cc00b1 *man/trackr_knit_env.Rd
 8a06df0f05a49e168001967646c5b8bf *man/uniqueID-methods.Rd
 de41596b77e9d98468f64ec2f45d1e12 *man/user-methods.Rd
 4b98eceb0c01da995597f31d9a30a138 *tests/ggplot_extraction.R
-9edd0631ac5dac83e2822d36bc854ba0 *tests/trackr-tests.R
+ff9a0c42502681bc07feb38b849e27fc *tests/trackr-tests.R
 136d0ee24799ffc498a728ac114a06ae *vignettes/Extending-trackr.Rnw
 67efaa2ba3bb0f2b3d40e1d4a53cc7ba *vignettes/index.Rmd

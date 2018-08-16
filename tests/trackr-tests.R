@@ -7,9 +7,12 @@ defaultTDB(tdb)
 sysfil = system.file("test_docs/knitr_test.Rmd", package = "trackr")
 rmdfil = file.path(tempdir(), "knitr_test.Rmd")
 file.copy(sysfil, rmdfil)
-knit_and_record(rmdfil, verbose = TRUE)
-docs = findRecords("mtcars")
-stopifnot(length(docs) == 2) ## recvars is 'fit' so that plus report
+if(rmarkdown::pandoc_available()) {
+    knit_and_record(rmdfil, verbose = TRUE)
+    stopifnot(length(findRecords("mtcars")) == 2) ## recvars is 'fit' so that plus report
+} else {
+    message("Pandoc not available. Skipping knit_and_record test")
+}
 
 f = function(paths) readLines(paths)
 fil = system.file("test_docs", "knitr_test.Rmd", package = "trackr")
