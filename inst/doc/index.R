@@ -221,6 +221,21 @@ plotobjs = lapply(seq(along=gcseplots), function(i) {
 gallery = marrangeGrob(plotobjs, nrow =2, ncol=3)
 gallery
 
+## ---- makemanifest-------------------------------------------------------
+library(switchr)
+man = manifestFromRecord(diamres[[1]])
+man
+
+## ---- eval = FALSE-------------------------------------------------------
+#  
+#  
+#  nm = gsub(":", "_", diamres[[1]]$id)
+#  switchTo(nm, seed = man)
+#  
+#  ## OR
+#  
+#  install_packages(man)
+
 ## ---- eval=FALSE---------------------------------------------------------
 #  
 #  ## NOT RUN

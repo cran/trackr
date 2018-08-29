@@ -12,7 +12,7 @@
 
 <meta name="author" content="Sara Moore, Gabriel Becker" />
 
-<meta name="date" content="2018-08-16" />
+<meta name="date" content="2018-08-28" />
 
 <title>An introduction to trackr</title>
 
@@ -70,7 +70,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">An introduction to trackr</h1>
 <h4 class="author"><em>Sara Moore, Gabriel Becker</em></h4>
-<h4 class="date"><em>2018-08-16</em></h4>
+<h4 class="date"><em>2018-08-28</em></h4>
 
 
 
@@ -107,7 +107,7 @@ tdb =<span class="st"> </span><span class="kw">TrackrDB</span>(<span class="dt">
 ## [1] 0
 ## 
 ## Slot &quot;img_dir&quot;:
-## [1] &quot;/var/folders/79/l_n_5qr152d2d9d9xs0591lh0000gn/T//Rtmpwqid8Y/trackr_img_dir&quot;
+## [1] &quot;/var/folders/79/l_n_5qr152d2d9d9xs0591lh0000gn/T//RtmpFNRxGW/trackr_img_dir&quot;
 ## 
 ## Slot &quot;img_ext&quot;:
 ## [1] &quot;png&quot;
@@ -121,9 +121,9 @@ tdb =<span class="st"> </span><span class="kw">TrackrDB</span>(<span class="dt">
 ## Field &quot;docs&quot;:
 ## DocList (0x0)
 ## Field &quot;.file&quot;:
-## [1] &quot;/var/folders/79/l_n_5qr152d2d9d9xs0591lh0000gn/T//Rtmpwqid8Y/objdb.json&quot;
+## [1] &quot;/var/folders/79/l_n_5qr152d2d9d9xs0591lh0000gn/T//RtmpFNRxGW/objdb.json&quot;
 ## Field &quot;file&quot;:
-## [1] &quot;/var/folders/79/l_n_5qr152d2d9d9xs0591lh0000gn/T//Rtmpwqid8Y/objdb.json&quot;</code></pre>
+## [1] &quot;/var/folders/79/l_n_5qr152d2d9d9xs0591lh0000gn/T//RtmpFNRxGW/objdb.json&quot;</code></pre>
 </div>
 <div id="create-some-example-plots" class="section level2">
 <h2>Create some example plots</h2>
@@ -362,6 +362,22 @@ plotobjs =<span class="st"> </span><span class="kw">lapply</span>(<span class="k
 gallery =<span class="st"> </span><span class="kw">marrangeGrob</span>(plotobjs, <span class="dt">nrow =</span><span class="dv">2</span>, <span class="dt">ncol=</span><span class="dv">3</span>)
 gallery</code></pre></div>
 <p>We can see above that in our set of example plots, gcsescore is is looked at primarily in terms of its distribution conditional on a particular value for <code>score</code>.</p>
+<div id="recreating-the-package-cohort-for-a-result" class="section level2">
+<h2>Recreating the package cohort for a result</h2>
+<p>With the suggested <code>switchr</code> package installed, we can create a <code>SessionManifest</code> from a record (as returned by <code>findRecords</code>) by calling the <code>manifestFromRecord</code> function:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(switchr)
+man =<span class="st"> </span><span class="kw">manifestFromRecord</span>(diamres[[<span class="dv">1</span>]])</code></pre></div>
+<pre><code>## Error in is(lst, &quot;list&quot;): subscript out of bounds</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">man</code></pre></div>
+<pre><code>## Error in eval(expr, envir, enclos): object 'man' not found</code></pre>
+<p>We could then use this manifest to recreate the environment (up to R package versions) used to create the result (NOT RUN)</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nm =<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;:&quot;</span>, <span class="st">&quot;_&quot;</span>, diamres[[<span class="dv">1</span>]]$id)
+<span class="kw">switchTo</span>(nm, <span class="dt">seed =</span> man)
+
+## OR
+
+<span class="kw">install_packages</span>(man)</code></pre></div>
+</div>
 </div>
 <div id="integrating-with-blacklight-via-rsolr" class="section level1">
 <h1>Integrating with Blacklight via rsolr</h1>
