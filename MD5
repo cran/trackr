@@ -1,4 +1,4 @@
-5193c3b1d54b573c576f5c9a6d035dff *DESCRIPTION
+ee77a768d3b3e441ce6280bf2aee7cde *DESCRIPTION
 9bfcac5214a4571067c65ddadae1cbe4 *NAMESPACE
 78bdc1352b7af53be045f49bf10958d5 *R/Classes.R
 e7630f30dea885ff1e54cef5f1460ec5 *R/DocCollectionRef-methods.R
@@ -19,7 +19,7 @@ ee8da20d63e45f030c1d50185ca43e79 *R/parseCode.R
 ff20362c26960b22df91553df26e24b3 *R/recordFile.R
 8bf825ebc6194c26ac9292b6bc2d331a *R/shiny.R
 4273102726fe33b3d06a1fd616a3ed54 *R/showMethods.R
-e7165092f2b5f4e13b4b846a4c1e8bd1 *build/vignette.rds
+3f6c5c2263e77ee46466b40ebcbfee35 *build/vignette.rds
 78b18c96c8bc6e910f07308004a5ee7e *inst/JSM2016/JSM2016.css
 711f3c22dfaa2507129ac759dc70a15f *inst/JSM2016/JSM2016.html
 ac56fded3e43395bed45226d22dd71cf *inst/JSM2016/JSM2016.org
@@ -37,10 +37,10 @@ e484101726212a4d2d87fede6d1aad1e *inst/JSM2016/pricevcaratgroup.png
 cfe21d51e40f07b968403e1a25fa3654 *inst/JSM2016/unclesam.jpg
 4e02925c9b5988746e471c4f2ad407e8 *inst/doc/Extending-trackr.R
 136d0ee24799ffc498a728ac114a06ae *inst/doc/Extending-trackr.Rnw
-c628ad377c5594588e07960a9c992203 *inst/doc/Extending-trackr.pdf
+53d4f059c333e6b23bb1be22f62bcf29 *inst/doc/Extending-trackr.pdf
 652c0d41005aefa51732af65807623ab *inst/doc/index.R
 b8def8b2841fe4b3ba615f41567082ce *inst/doc/index.Rmd
-f7b8d68c507957b40b2554efd5ad68dc *inst/doc/index.html
+e61bedfd8ca44a59894595096afe546d *inst/doc/index.html
 4f8a7fb3b684a6b6e6cecca21c3c6977 *inst/images/Rlogo.png
 914b679b7b2ff36a5d6c6094e53cb405 *inst/shinyweb/css/style.css
 6eb718155eba55d6a9fc021ab3672b6c *inst/shinyweb/js/index.js
