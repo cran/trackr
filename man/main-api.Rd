@@ -16,9 +16,9 @@ rmRecord(object, db = defaultTDB(), verbose = FALSE)
 findRecords(pattern, db = defaultTDB(), fields = NULL,
   ret_type = c("doclist", "id", "backend"), verbose = FALSE)
 
-recordFiles(object, ingestfun = NULL, db = defaultTDB(), resultURI = "",
-  code = histry_tracker(), force = FALSE, verbose = FALSE,
-  symorpos = NULL, dryrun = FALSE)
+recordFiles(object, ingestfun = NULL, db = defaultTDB(),
+  resultURI = "", code = histry_tracker(), force = FALSE,
+  verbose = FALSE, symorpos = NULL, dryrun = FALSE)
 }
 \arguments{
 \item{object}{ANY. An object to record. Or (for recordFiles) a
@@ -81,7 +81,7 @@ When more than one file is passed to
 }
 \examples{
 prevtdb = defaultTDB()
-defaultTDB(listTDB())
+defaultTDB(listTDB(opts = TrackrOptions(img_dir=tempdir())))
 mt = datasets::mtcars
 record(mt)
 

@@ -31,8 +31,8 @@ tags(object)
 
 \S4method{tags}{gTree}(object) <- value
 
-\S4method{editTags}{FeatureSet}(object, value, option = c("replace", "add",
-  "remove"))
+\S4method{editTags}{FeatureSet}(object, value, option = c("replace",
+  "add", "remove"))
 
 \S4method{tags}{FeatureSet}(object)
 
@@ -50,8 +50,6 @@ tags(object)
 \item{value}{A character vector of tags.}
 
 \item{option}{One of c("replace", "add", "remove"), with default "replace" (equivalent to "tags<-" with an additional uniqueness check), describing the action to be taken with the tag vector provided.}
-
-\item{...}{Additional named arguments.}
 }
 \value{
 A modified object of (super)class PlotFeatureSet.

@@ -8,7 +8,6 @@
 \alias{fullData,ggplot-method}
 \alias{fullData,trellis-method}
 \alias{fullData,gTree-method}
-\alias{fullData,PlotFeatureSet-method}
 \title{Accessor method for the data (slot "data") that is used in plotting.}
 \usage{
 fullData(object, quiet = FALSE)

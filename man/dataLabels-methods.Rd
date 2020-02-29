@@ -10,7 +10,6 @@
 \alias{dataLabels,trellis-method}
 \alias{dataLabels,gTree-method}
 \alias{dataLabels<-,PlotFeatureSet-method}
-\alias{dataLabels,PlotFeatureSet-method}
 \title{Accessors for the axis labels PlotFeatureSet objects}
 \usage{
 dataLabels(object) <- value

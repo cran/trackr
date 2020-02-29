@@ -9,8 +9,9 @@
 \usage{
 saveBasicPlot(object, filename, ...)
 
-\S4method{saveBasicPlot}{PlotFeatureSet}(object, filename, type = c("png",
-  "jpeg", "jpg", "tiff", "tif", "bmp"), width = 7, height = 7, dpi = 300)
+\S4method{saveBasicPlot}{PlotFeatureSet}(object, filename,
+  type = c("png", "jpeg", "jpg", "tiff", "tif", "bmp"), width = 7,
+  height = 7, dpi = 300)
 }
 \arguments{
 \item{object}{An object of (super)class PlotFeatureSet or plot

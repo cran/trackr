@@ -7,7 +7,6 @@
 \alias{nObs,PlotFeatureSet-method}
 \alias{nObs,trellis-method}
 \alias{nObs,gTree-method}
-\alias{nObs,PlotFeatureSet-method}
 \alias{nObs,ggplot-method}
 \title{Accessor method for the number of observations (slot "nobs") of the plot object.}
 \usage{

@@ -286,7 +286,6 @@ setGeneric(name = "position<-",
 #' @title Mutator method for PlotFeatureSet "tags" slot.
 #' @param object An object of (super)class FeatureSet 
 #' @param value A character vector of tags.
-#' @param ... Additional named arguments.
 #' @return A modified object of (super)class PlotFeatureSet.
 #' @rdname tags-methods
 #' @export

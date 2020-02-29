@@ -8,7 +8,6 @@
 \alias{hasLegend,ggplot-method}
 \alias{hasLegend,trellis-method}
 \alias{hasLegend,gTree-method}
-\alias{hasLegend,PlotFeatureSet-method}
 \title{Accessor method for the legend indicator (slot "haslegend") of the plot object.}
 \usage{
 hasLegend(object)

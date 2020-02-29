@@ -8,7 +8,6 @@
 \alias{coordSystem,ggplot-method}
 \alias{coordSystem,trellis-method}
 \alias{coordSystem,gTree-method}
-\alias{coordSystem,PlotFeatureSet-method}
 \title{Accessor method for the coordinate system (slot "coordsys") of the plot object.}
 \usage{
 coordSystem(object)

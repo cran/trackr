@@ -9,7 +9,8 @@
 jsonTDB(file = "~/.trackr/objdb.json", opts = TrackrOptions(img_dir =
   img_dir, ...), img_dir = file.path(dirname(file), "images"), ...)
 
-solrTDB(core, requestHandler = "search", opts = TrackrOptions(...), ...)
+solrTDB(core, requestHandler = "search", opts = TrackrOptions(...),
+  ...)
 
 listTDB(data = list(), opts = TrackrOptions(...), ...)
 }

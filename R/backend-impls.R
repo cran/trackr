@@ -141,9 +141,9 @@ setMethod("make_image_files", "FeatureSet",
     id = gsub(":", "_", uniqueID(object))
     paths = file.path(img.save.dir, paste0(id, c("_thumb.", ".","_feed."), img.ext))
 
-    file.copy(system.file("images", "Rlogo.png", package = "trackr"), paths[1])
-    file.copy(system.file("images", "Rlogo.png", package = "trackr"), paths[2])
-    file.copy(system.file("images", "Rlogo.png", package = "trackr"), paths[3])
+    file.copy(system.file("default_images", "Rlogo.png", package = "trackr"), paths[1])
+    file.copy(system.file("default_images", "Rlogo.png", package = "trackr"), paths[2])
+    file.copy(system.file("default_images", "Rlogo.png", package = "trackr"), paths[3])
     list(preview.path = basename(paths[1]), image.path = basename(paths[2]))
 })
 

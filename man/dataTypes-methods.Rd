@@ -8,7 +8,6 @@
 \alias{dataTypes,ggplot-method}
 \alias{dataTypes,trellis-method}
 \alias{dataTypes,gTree-method}
-\alias{dataTypes,PlotFeatureSet-method}
 \title{Accessor method for the variable types (slot "vartypes") of
     the plot object.}
 \usage{

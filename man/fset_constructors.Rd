@@ -15,8 +15,9 @@ ObjFeatureSet(object, code = as.character(parseCode(object)),
   klass = getTopS3Class(object), uniqueid = gen_hash_id(object),
   tags = character(), user = unname(Sys.info()["user"]),
   regdate = Sys.time(), analysispkg = scrape_descr(),
-  analysisfile = .analysisFileOrNA(), rstudioproject = .rstudioProjOrNA(),
-  fsetklass = "ObjFeatureSet", isplot = FALSE, generatedin = character(),
+  analysisfile = .analysisFileOrNA(),
+  rstudioproject = .rstudioProjOrNA(), fsetklass = "ObjFeatureSet",
+  isplot = FALSE, generatedin = character(),
   clineargs = commandArgs(), resultURI = character(),
   provtable = ProvStoreDF(), ...)
 
@@ -37,14 +38,15 @@ DFFeatureSet(object, fsetklass = "DFFeatureSet", vars = names(object),
 RmdFeatureSet(rmdfile, outputfile, uniqueid,
   rmdfileid = gen_hash_id(readLines(rmdfile)), chunks,
   numouts = length(trackr_backend(objtdb)),
-  numplots = sum(sapply(objrecords, function(x) x$isplot)), titles = "",
-  author = "", textkeywords = character(), codekeywords = character(),
-  outputids = sapply(objrecords, function(x) x$uniqueid, USE.NAMES = FALSE),
-  tags = character(), user = unname(Sys.info()["user"]),
-  regdate = Sys.time(), analysispkg = scrape_descr(),
-  analysisfile = .analysisFileOrNA(), rstudioproject = .rstudioProjOrNA(),
-  fsetklass = "RmdFeatureSet", objrecords = findRecords(".", db = objtdb),
-  objtdb, figurefiles = NA_character_, resultURI = "", ...)
+  numplots = sum(sapply(objrecords, function(x) x$isplot)),
+  titles = "", author = "", textkeywords = character(),
+  codekeywords = character(), outputids = sapply(objrecords,
+  function(x) x$uniqueid, USE.NAMES = FALSE), tags = character(),
+  user = unname(Sys.info()["user"]), regdate = Sys.time(),
+  analysispkg = scrape_descr(), analysisfile = .analysisFileOrNA(),
+  rstudioproject = .rstudioProjOrNA(), fsetklass = "RmdFeatureSet",
+  objrecords = findRecords(".", db = objtdb), objtdb,
+  figurefiles = NA_character_, resultURI = "", ...)
 }
 \arguments{
 \item{object}{object to extract metadata from}

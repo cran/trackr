@@ -8,7 +8,6 @@
 \alias{groupInfo,ggplot-method}
 \alias{groupInfo,trellis-method}
 \alias{groupInfo,gTree-method}
-\alias{groupInfo,PlotFeatureSet-method}
 \title{Accessor method for the panel and other grouping information (slot "grouping") of the plot object.}
 \usage{
 groupInfo(object)
