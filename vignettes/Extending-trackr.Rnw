@@ -147,7 +147,6 @@ With this, our backend is complete and ready for use.
 library(ggplot2)
 plt = qplot(x = 1:10, y = rnorm(10))
 be = BasicListBackend()
-opts = TrackrOptions(img_dir = tempdir())
 db = TrackrDB(backend = be)
 defaultTDB(db)
 record(plt)

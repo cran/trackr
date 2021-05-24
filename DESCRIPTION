@@ -2,8 +2,8 @@ Package: trackr
 Type: Package
 Title: Semantic Annotation and Discoverability System for R-Based
         Artifacts
-Version: 0.10.6
-Date: 2020-02-28
+Version: 0.10.7
+Date: 2021-05-20
 Authors@R: c(
     person("Gabriel", "Becker", role = c("aut", "cre"),
         email = "gabembecker@gmail.com"),
@@ -30,10 +30,10 @@ Collate: 'Classes.R' 'DocCollectionRef-methods.R' 'Generics.R'
         'coercerender.R' 'convenience_constructors.R'
         'ggplotversions.R' 'knitr.R' 'makeRStudioExtras.R'
         'parseCode.R' 'recordFile.R' 'shiny.R' 'showMethods.R'
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.1
 NeedsCompilation: no
-Packaged: 2020-02-29 03:47:20 UTC; gabrielbecker
+Packaged: 2021-05-21 06:31:49 UTC; gabrielbecker
 Author: Gabriel Becker [aut, cre],
   Sara Moore [aut]
 Repository: CRAN
-Date/Publication: 2020-02-29 05:40:07 UTC
+Date/Publication: 2021-05-24 14:50:02 UTC

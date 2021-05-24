@@ -7,8 +7,7 @@
 \alias{JSONBackend-class}
 \title{JSON backend for trackr}
 \usage{
-JSONBackend(file = normalizePath("./trackr_db_data.json"),
-  data = list())
+JSONBackend(file = normalizePath("./trackr_db_data.json"), data = list())
 }
 \arguments{
 \item{file}{character. The json "database" to use as a trackr backend}
